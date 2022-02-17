@@ -1,0 +1,18 @@
+from umqtt.simple import MQTTClient
+from sys import stdin
+
+aws_thing_name = "XBee_Cellular_Thing"
+aws_endpoint = "" #Change for the AWS endpoint of your account
+mqtt_topic = "device/data" #Change for the MQTT topic that you want to publish for
+
+mqtt = MQTTClient(aws_thing_name,aws_endpoint, ssl=True, ssl_params={"keyfile": "cert/aws.key", "certfile": "cert/aws.crt", "ca_certs": "cert/aws.ca"})
+
+while(1):
+	n = stdin.buffer.read(2) # Read 2 caracteres that represents the payload length(bytes) [10 to 99 bytes]
+	n = int(n.decode("utf-8")) # Transform the payload lenght received in string to int
+	payload = stdin.buffer.read(n).decode("utf-8") # Read the payload
+
+	mqtt.connect() # Connect with the AWS endpoint
+	mqtt.publish(mqtt_topic, payload) # Publish into the mqtt topic 
+	mqtt.disconnect() # Disconnect the established connection to the endpoint
+
