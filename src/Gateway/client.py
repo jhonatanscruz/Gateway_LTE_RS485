@@ -8,12 +8,12 @@ while True:
     if protocol in ('UDP','TCP','SCTP'):
         break
 
-hostServer = '192.168.100.9'
-port = 9090
+hostServer = '10.0.0.200'
+port = 55000
 address = (hostServer,port)
 
 if protocol == 'UDP':
-        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)     
+        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 elif protocol == 'TCP':
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.connect(address)
@@ -27,8 +27,8 @@ print('dc - Desligar o cliente')
 print('dcs - Desligar o cliente e o servidor\n')
 
 #while True:
-i = input('Digite uma mensagem ou um comando: ')
-
+#i = input('Digite uma mensagem ou um comando: ')
+i = b'\xae\x91\x97B\x00\x00\x00\x00\xd5\x11\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
 if i == '1':
     ini = time.time()
     for j in range(1,10):
@@ -46,9 +46,8 @@ if i == '1':
     #break
 else:
     if protocol == 'UDP':
-        print(i.encode("utf-8"))
-        print(i.encode())
-        sock.sendto(i.encode(), address)
+        print(i)
+        sock.sendto(i, address)
     elif protocol == 'TCP':
         sock.send(str.encode(i))
     elif protocol == 'SCTP':
