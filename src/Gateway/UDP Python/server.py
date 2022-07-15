@@ -129,8 +129,8 @@ if __name__ == "__main__":
     #        UDP CONNECTION CREDENTIALS        #
     #                                          #
     ############################################
-    HOST = "192.168.1.2"
-    PORT = 55000
+    HOST = ""
+    PORT = 
     address = (HOST,PORT)
     buffer = 1024
 
@@ -139,11 +139,11 @@ if __name__ == "__main__":
     #        DB CONNECTION CREDENTIALS        #
     #                                         #
     ###########################################
-    _host='localhost'
-    _port='5432'
+    _host=''
+    _port=''
     _db='measures'
     _user='fttech'
-    _pass='Qcn@ZNiq1Q2Cv1LXJ$EQ'
+    _pass=''
 
     # ----------------- Wait for Ethernet connection ----------------- #
     #time.sleep(90) # wait 90 seconds before initialize
